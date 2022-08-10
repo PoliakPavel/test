@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -11,6 +12,10 @@ class Category(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
         ordering = ['title']
+
+    def get_absolute_url(self):
+        return reverse('category', kwargs={"category_id": self.pk})
+
 
 
 class News(models.Model):
